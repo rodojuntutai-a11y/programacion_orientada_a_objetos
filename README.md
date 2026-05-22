@@ -1,69 +1,83 @@
-# Fundamentos Básicos
+# Programación orientada a objetos en Kotlin
 
 ## Objetivo General
 
-Introducir los conceptos fundamentales del lenguaje Kotlin mediante la metodología de Test Driven Development (TDD), donde los estudiantes implementarán funcionalidades guiados por tests que inicialmente fallan.
+Este trabajo práctico tiene como objetivo introducir y evaluar los conceptos fundamentales de **Programación Orientada a Objetos (POO)** en **Kotlin**, utilizando **Test Driven Development (TDD)** como estrategia de aprendizaje.
+
+Al finalizar este práctico, serás capaz de:
+
+- Declarar clases con constructores primarios
+- Definir y utilizar propiedades inmutables (`val`) y mutables (`var`)
+- Implementar métodos de instancia que operan sobre el estado del objeto
+- Comprender y aplicar `data class` para modelar estructuras de datos
+- Aprovechar los métodos generados automáticamente: `toString()`, `equals()`, `copy()`
 
 ## Temas Evaluados
 
-- Variables y tipos de datos
-- Inferencia de tipos
-- Funciones
-- Condicionales (if/else)
-- Bucles (for, while)
-- Sentencia when
+Este práctico cubre los siguientes conceptos de Kotlin:
 
-## Reglas de Trabajo
-
-### Metodología TDD
-
-Sigue el ciclo **Red → Green → Refactor** en cada ejercicio:
-
-1. **Red**: Escribe un test que falla (el test define qué debe hacer el código)
-2. **Green**: Implementa el código mínimo necesario para que el test pase
-3. **Refactor**: Mejora el código manteniendo los tests pasando
-
-### Restricciones
-
-- Solo puedes utilizar las funcionalidades de Kotlin especificadas en cada ejercicio
-- No uses soluciones de internet durante la resolución
-- Cada ejercicio debe completarse antes de pasar al siguiente
+1. **Clases** - Declaración y uso de clases básicas
+2. **Constructores** - Constructores primarios con parámetros
+3. **Propiedades** - Propiedades inmutables (`val`) y mutables (`var`)
+4. **Métodos** - Métodos de instancia con lógica de negocio
+5. **Data Classes** - Clases especializadas para almacenar datos
+6. **toString()** - Representación textual de objetos (generado automáticamente en data classes)
+7. **equals()** - Comparación estructural de objetos (generado automáticamente en data classes)
+8. **copy()** - Creación de copias con modificaciones parciales (generado automáticamente en data classes)
 
 ## Estructura del Proyecto
 
 ```
-fundamentos-basicos/
+programacion-orientada-a-objetos-en-kotlin/
 ├── src/
-│   ├── main/kotlin/          # Código de producción (eskeletos)
-│   │   └── edu/etec/ds/
-│   │       └── fundamentos/
-│   │           └── *.kt
-│   └── test/kotlin/          # Tests (deben fallar inicialmente)
-│       └── edu/etec/ds/
-│           └── fundamentos/
-│               └── *Test.kt
+│   ├── main/
+│   │   └── kotlin/
+│   │       ├── Estudiante.kt          (Ejercicio 1)
+│   │       ├── CuentaBancaria.kt      (Ejercicio 2)
+│   │       └── Producto.kt            (Ejercicio 3)
+│   └── test/
+│       └── kotlin/
+│           ├── Ejercicio1Test.kt
+│           ├── Ejercicio2Test.kt
+│           └── Ejercicio3Test.kt
 ├── build.gradle.kts
 ├── settings.gradle.kts
 └── README.md
 ```
 
-## Ejercicios
+## Reglas de Trabajo
 
-El práctico contiene 6 ejercicios递增:
+### Metodología TDD
 
-1. **Variables y Tipos de Datos**: Manipulación de tipos primitivos
-2. **Inferencia de Tipos**: Comprensión del sistema de tipos de Kotlin
-3. **Funciones**: Definición y uso de funciones
-4. **Condicionales**: Lógica de decisión con if/else
-5. **Bucles**: Iteraciones y operaciones sobre colecciones
-6. **Sentencia when**: Expresiones de control avanzadas
+Este práctico sigue estrictamente el ciclo **Red → Green → Refactor**:
+
+1. **Red**: Ejecuta los tests. Inicialmente **todos fallarán** porque no has implementado las clases.
+2. **Green**: Escribe el código mínimo necesario para hacer pasar los tests.
+3. **Refactor**: Mejora tu código manteniendo los tests en verde.
+
+### Restricciones Importantes
+
+- **NO modifiques los archivos de tests**. Los tests son la especificación del ejercicio.
+- **NO implementes funcionalidad que no esté cubierta por tests**.
+- Implementa **solo** el código necesario para hacer pasar los tests.
+- Sigue el orden de los ejercicios (1 → 2 → 3).
+
+### Flujo de Trabajo Recomendado
+
+1. Lee los tests del ejercicio actual
+2. Identifica qué clase debes crear y qué debe hacer
+3. Crea el archivo correspondiente en `src/main/kotlin/`
+4. Implementa la solución mínima
+5. Ejecuta los tests
+6. Refactoriza si es necesario
+7. Avanza al siguiente ejercicio
 
 ## Instrucciones para Ejecutar los Tests
 
 ### Requisitos Previos
 
-- JDK 17 o superior
-- Gradle 8.x (opcional si usas el wrapper)
+- **Java JDK 17 o superior** instalado (recomendado Java 21)
+- No necesitas instalar Gradle (el proyecto incluye Gradle Wrapper)
 
 ### Ejecutar Todos los Tests
 
@@ -74,42 +88,87 @@ El práctico contiene 6 ejercicios递增:
 ### Ejecutar Tests de un Ejercicio Específico
 
 ```bash
-./gradlew test --tests "edu.etec.ds.fundamentos.Ejercicio1Test"
+./gradlew test --tests Ejercicio1Test
+./gradlew test --tests Ejercicio2Test
+./gradlew test --tests Ejercicio3Test
 ```
 
-### Ver Resultados en HTML
+### Ver el Reporte de Tests
 
-```bash
-./gradlew test
-# Abrir: build/reports/tests/test/index.html
+Después de ejecutar los tests, puedes ver un reporte detallado en:
+
+```
+build/reports/tests/test/index.html
 ```
 
-### Modo Verboso
+Abre este archivo en tu navegador para una vista completa de los resultados.
 
-```bash
-./gradlew test --info
-```
+## Descripción de los Ejercicios
 
-## Configuración de IDE
+### Ejercicio 1: Clases, Constructores y Propiedades
 
-Se recomienda **IntelliJ IDEA** para el desarrollo, pero el proyecto es independiente de la IDE.
+**Archivo a crear:** `src/main/kotlin/Estudiante.kt`
 
-### Pasos en IntelliJ IDEA
+**Conceptos evaluados:**
+- Declaración de clases
+- Constructores primarios
+- Propiedades inmutables (`val`) y mutables (`var`)
+- Tipos nullables (`?`)
 
-1. File → Open → Seleccionar carpeta `fundamentos-basicos`
-2. Esperar a que Gradle sincronice el proyecto
-3. Ejecutar tests desde la pestaña "Run" o con `Ctrl+Shift+F10`
+**Contexto:** Modelar un estudiante con nombre, legajo y calificación opcional.
 
-## GitHub Actions
+---
 
-El proyecto incluye un workflow de CI en `.github/workflows/ci.yml` que:
-- Ejecuta los tests en cada push y pull request
-- Verifica que todos los tests pasen
-- Usa Java 17 estable
+### Ejercicio 2: Métodos de Instancia
 
-## Entrega
+**Archivo a crear:** `src/main/kotlin/CuentaBancaria.kt`
 
-1. Completa todos los ejercicios en orden
-2. Asegúrate de que todos los tests pasen (`./gradlew test`)
-3. Sube el proyecto a un repositorio GitHub
-4. Verifica que el pipeline de CI pase exitosamente
+**Conceptos evaluados:**
+- Métodos de instancia
+- Lógica condicional dentro de métodos
+- Modificación del estado interno del objeto
+- Retorno de valores desde métodos
+
+**Contexto:** Implementar una cuenta bancaria con operaciones de depósito y retiro.
+
+---
+
+### Ejercicio 3: Data Classes
+
+**Archivo a crear:** `src/main/kotlin/Producto.kt`
+
+**Conceptos evaluados:**
+- Declaración de `data class`
+- Uso de `toString()` generado automáticamente
+- Comparación con `equals()` generado automáticamente
+- Creación de copias con `copy()`
+
+**Contexto:** Modelar un producto con código, nombre y precio, aprovechando las ventajas de las data classes.
+
+---
+
+## Integración Continua (CI)
+
+Este proyecto está configurado con **GitHub Actions** para ejecutar los tests automáticamente en cada `push` o `pull request`.
+
+El pipeline fallará si algún test no pasa, garantizando la calidad del código.
+
+## Recursos Adicionales
+
+- [Documentación oficial de Kotlin](https://kotlinlang.org/docs/home.html)
+- [Clases en Kotlin](https://kotlinlang.org/docs/classes.html)
+- [Data Classes](https://kotlinlang.org/docs/data-classes.html)
+- [Propiedades](https://kotlinlang.org/docs/properties.html)
+
+## Soporte
+
+Si encuentras problemas técnicos con la configuración del proyecto:
+
+1. Verifica que tienes Java 17+ instalado: `java -version`
+2. Asegúrate de estar en el directorio raíz del proyecto
+3. Limpia el proyecto: `./gradlew clean`
+4. Vuelve a ejecutar los tests: `./gradlew test`
+
+---
+
+**¡Buena suerte y que disfrutes aprendiendo Kotlin con TDD!**
