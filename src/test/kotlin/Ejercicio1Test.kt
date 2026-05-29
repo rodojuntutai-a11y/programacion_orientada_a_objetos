@@ -28,7 +28,7 @@ class Ejercicio1Test {
         val legajo = 12345
 
         // Cuando: se crea un estudiante
-        val estudiante = Estudiante(nombre, legajo)
+        val estudiante = estudiante(nombre, legajo)
 
         // Entonces: el estudiante existe y tiene los valores correctos
         assertNotNull(estudiante)
@@ -39,7 +39,7 @@ class Ejercicio1Test {
     @Test
     fun `debe permitir modificar la calificacion del estudiante`() {
         // Dado: un estudiante sin calificación inicial
-        val estudiante = Estudiante("Carlos Lopez", 54321)
+        val estudiante = estudiante("Carlos Lopez", 54321)
 
         // Cuando: se asigna una calificación
         estudiante.calificacion = 8.5
@@ -51,7 +51,7 @@ class Ejercicio1Test {
     @Test
     fun `la calificacion inicial debe ser null`() {
         // Dado: un estudiante recién creado
-        val estudiante = Estudiante("Laura Martinez", 98765)
+        val estudiante = estudiante("Laura Martinez", 98765)
 
         // Entonces: su calificación inicial debe ser null
         assertEquals(null, estudiante.calificacion)
@@ -61,7 +61,7 @@ class Ejercicio1Test {
     fun `el nombre y legajo no deben ser modificables`() {
         // Este test verifica implícitamente que nombre y legajo son 'val'
         // Si intentaras hacer estudiante.nombre = "otro" el código no compilaría
-        val estudiante = Estudiante("Pedro Sanchez", 11111)
+        val estudiante = estudiante("Pedro Sanchez", 11111)
 
         // Verificamos que los valores permanecen constantes
         assertEquals("Pedro Sanchez", estudiante.nombre)
